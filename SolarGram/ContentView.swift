@@ -8,14 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        /*
+         * Much easier to use TabView over NavigationView + ToolbarItemGroup
+         * NavigationView is also being deprecated in favor of NavigationStack
+         */
+        TabView {
+            ScrollView { Feed() }
+                .tabItem {
+                    Label("Photos", systemImage: "photo.stack")
+                }
+            
+            Profile()
+                .tabItem {
+                    Label("Profile", systemImage: "person.circle.fill")
+                }
         }
-        .padding()
     }
 }
 

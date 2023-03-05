@@ -1,0 +1,23 @@
+[
+    {
+        "id": 0,
+        "user": "Howl",
+        "profilePicName": "howl",
+        "imageName": "sophieAtMarket",
+        "caption": "Shopping with Sophie today! She's so good at getting bargains.",
+    },
+    {
+        "id": 1,
+        "user": "Sophie",
+        "profilePicName": "sophie",
+        "imageName": "viewFromBalcony",
+        "caption": "Howl and Calcifer are a handful, but Markl is cute and this view is unbeatable. Guess I'll make the best of this place.",
+    },
+    {
+        "id": 2,
+        "user": "Howl",
+        "profilePicName": "howl",
+        "imageName": "castle",
+        "caption": "Ahh, can't beat this view of the castle at sunrise.",
+    },
+]

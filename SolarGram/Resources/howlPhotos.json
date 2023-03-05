@@ -1,0 +1,32 @@
+[
+    {
+        "id": 0,
+        "imageName": "sophieAtMarket",
+        "caption": "Shopping with Sophie today! She's so good at getting bargains.",
+    },
+    {
+        "id": 1,
+        "imageName": "castle",
+        "caption": "Ahh, can't beat this view of the castle at sunrise.",
+    },
+    {
+        "id": 2,
+        "imageName": "calcifer",
+        "caption": "Calcifer hard at work, keeping the castle moving with his magic. He's basically a demon but he's a nice guy.",
+    },
+    {
+        "id": 3,
+        "imageName": "marcoEating",
+        "caption": "Little wizard, big appetite!!",
+    },
+    {
+        "id": 4,
+        "imageName": "starryGarden",
+        "caption": "#TBT Miss this place. Can't believe I used to live here.",
+    },
+    {
+        "id": 5,
+        "imageName": "castle",
+        "caption": "Ahh, can't beat this view of the castle at sunrise.",
+    },
+]
