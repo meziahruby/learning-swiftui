@@ -19,7 +19,7 @@ struct Profile: View {
         
         VStack {
             // User
-            Image("howl")
+            Image("Howl")
                 .resizable()
                 .scaledToFill()
                 .frame(width: 100, height: 100)

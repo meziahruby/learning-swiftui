@@ -9,20 +9,28 @@ import SwiftUI
 
 struct ContentView: View {
     
+    var viewModel: FeedViewModel
+    
+    @State var showModal = false
+    
     var body: some View {
         /*
          * Much easier to use TabView over NavigationView + ToolbarItemGroup
          * NavigationView is also being deprecated in favor of NavigationStack
          */
         TabView {
-            ScrollView { Feed() }
+            ScrollView { Feed(viewModel: FeedViewModel()) }
                 .tabItem {
-                    Label("Photos", systemImage: "photo.stack")
+                    Label("Feed", systemImage: "shared.with.you")
                 }
             
             Profile()
                 .tabItem {
                     Label("Profile", systemImage: "person.circle.fill")
+                }
+            CameraPicker(viewModel: FeedViewModel())
+                .tabItem {
+                    Label("Take Photo", systemImage: "camera")
                 }
         }
     }
@@ -30,6 +38,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        
+        ContentView(viewModel: FeedViewModel())
     }
 }

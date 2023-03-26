@@ -12,10 +12,9 @@ struct FeedModel: Identifiable, Hashable, Codable {
     var id: Int
     
     var user: String
-    private var profilePicName: String
-    var profilePic: Image { Image(profilePicName) }
+    var profilePic: Image { Image(user) }
     
-    private var imageName: String
+    var imageName: String
     var image: Image { Image(imageName) }
     var caption: String
 }

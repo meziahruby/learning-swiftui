@@ -11,7 +11,7 @@ struct Post: View {
     
     @State var isLiked = false
     
-    var post: FeedModel
+    var post: PostModel
     
     var body: some View {
         
