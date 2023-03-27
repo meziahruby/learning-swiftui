@@ -71,7 +71,6 @@
 				0439909929CFD53D00922D17 /* Helper */,
 				0439908F29CFBFEB00922D17 /* View Model */,
 				0439906829B42D6600922D17 /* SolarGramApp.swift */,
-				0439908729B42DA400922D17 /* Resources */,
 				0439908029B42D9200922D17 /* Model */,
 				0439907729B42D8300922D17 /* View */,
 				0439906C29B42D6800922D17 /* Assets.xcassets */,
@@ -106,13 +105,6 @@
 				0495B78929D1D097009AA039 /* PostModel.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		0439908729B42DA400922D17 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		0439908F29CFBFEB00922D17 /* View Model */ = {
