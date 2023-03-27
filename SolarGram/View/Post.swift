@@ -9,8 +9,6 @@ import SwiftUI
 
 struct Post: View {
     
-    @State var isLiked = false
-    
     @EnvironmentObject var viewModel: FeedViewModel
     var post: PostModel
     
@@ -32,16 +30,20 @@ struct Post: View {
                 }
                 .padding(.leading, 10)
                 
-                // This helps clip the image to squares
-                // Learned from https://stackoverflow.com/questions/58290963/clip-image-to-square-in-swiftui
-                ZStack {
-                    post.imageFromName
-                        .resizable()
-                        .scaledToFill()
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                }
-                .clipped()
-                .aspectRatio(1, contentMode: .fill)
+                // Image
+                AspectImage(post.image)
+                /*
+                    // This helps clip the image to squares
+                    // Learned from https://stackoverflow.com/questions/58290963/clip-image-to-square-in-swiftui
+                    ZStack {
+                        post.image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                    }
+                    .clipped()
+                    .aspectRatio(1, contentMode: .fill)
+                 */
                 
                 // Caption and Post Action Buttons
                 VStack(alignment: .leading, spacing: 0) {
@@ -50,7 +52,7 @@ struct Post: View {
                     
                     HStack {
                         // Like button
-                        Button(action: { viewModel.likePost(post: post)},
+                        Button(action: { viewModel.likePost(post)},
                             label: {
                                 switch post.isLiked {
                                 case true:
@@ -66,7 +68,7 @@ struct Post: View {
                             .buttonStyle(.plain)
                         
                         // Delete button - Only show up if it can be deleted
-                        Button(action: { viewModel.deletePost(post: post)},
+                        Button(action: { viewModel.deletePost(post)},
                             label: {
                                 Image(systemName: "trash")
                                     .scaleEffect(1.5)
@@ -88,7 +90,7 @@ struct Post: View {
 
 struct Post_Previews: PreviewProvider {
     static var previews: some View {
-        let postPreviewObject = PostModel(user: "Howl", imageName: "sophieAtMarket", caption: "Shopping with Sophie today!", isLiked: false, canBeDeleted: false)
+        let postPreviewObject = PostModel(user: "Howl", image: Image("sophieAtMarket"), caption: "Shopping with Sophie today!", isLiked: false, canBeDeleted: false)
         Post(post: postPreviewObject)
     }
 }

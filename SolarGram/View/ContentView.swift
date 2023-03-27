@@ -17,15 +17,17 @@ struct ContentView: View {
          * NavigationView is also being deprecated in favor of NavigationStack
          */
         TabView {
-            ScrollView { Feed() }
+            ScrollView { Feed().environmentObject(viewModel) }
                 .tabItem {
                     Label("Feed", systemImage: "shared.with.you")
                 }
             
             Profile()
+                .environmentObject(viewModel)
                 .tabItem {
                     Label("Profile", systemImage: "person.circle.fill")
                 }
+                
         }
     }
 }

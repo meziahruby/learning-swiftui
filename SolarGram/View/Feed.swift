@@ -26,7 +26,7 @@ struct Feed: View {
             })
             .buttonStyle(.plain)
             .sheet(isPresented: $showImagePicker) {
-                ImagePicker(viewModel: FeedViewModel())
+                ImagePicker(viewModel: viewModel) // ...I had this as FeedViewModel() earlier which is why the picker wasnt working :'( oh well - at least it works now!
             }
             Button(action: { showFilePicker = true
             }, label: {
@@ -36,7 +36,7 @@ struct Feed: View {
             })
             .buttonStyle(.plain)
             .sheet(isPresented: $showFilePicker) {
-                CameraPicker(viewModel: FeedViewModel())
+                CameraPicker(viewModel: viewModel)
             }
         }
         Divider()
@@ -53,7 +53,7 @@ struct Feed: View {
 struct Feed_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView {
-            Feed()
+            Feed().environmentObject(FeedViewModel())
         }
     }
 }

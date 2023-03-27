@@ -17,8 +17,8 @@ class FeedViewModel: ObservableObject {
         model.posts
     }
     
-    func likePost(post: PostModel) {
-        model.likePost(post: post)
+    func likePost(_ post: PostModel) {
+        model.likePost(post)
     }
     
     // Adds posts - From Prof Douglas
@@ -31,16 +31,16 @@ class FeedViewModel: ObservableObject {
         DispatchQueue.main.async {
             // create a new post object, it might look like this, but you can adapt as needed in your project.
             
-            // REPLACE WITH REAL IMAGE FROM PICKER
-            let newPost = PostModel(user: "howl", imageName: image.description, caption: "Something New", isLiked:  false, canBeDeleted: true)
+
+            let newPost = PostModel(user: "Howl", image: Image(uiImage: image), caption: "Something New", isLiked:  false, canBeDeleted: true)
 
             // call some function on the model to add the new post to the array of posts, you can do this how you like, but the logic should be in the model
-            self.model.add(post: newPost)
+            self.model.add(newPost)
         }
     }
     
-    func deletePost(post: PostModel) {
-        
+    func deletePost(_ post: PostModel) {
+        model.delete(post)
     }
     
 }

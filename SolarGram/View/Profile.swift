@@ -8,12 +8,19 @@
 import SwiftUI
 
 struct Profile: View {
+    
+    @EnvironmentObject var viewModel: FeedViewModel
+    
     // I learned this trick for defining flexible grids from AppCoda - https://www.appcoda.com/learnswiftui/swiftui-gridlayout.html
     private var threeColGrid = [
         GridItem(.flexible()),
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
+    
+    let loggedInUser = "Howl" // Spoofing this because we are not doing authentication
+    var filteredPosts: [PostModel] { viewModel.feed.filter { $0.user == loggedInUser } }
+
     
     var body: some View {
         
@@ -28,15 +35,8 @@ struct Profile: View {
             
             // User's Grid
             LazyVGrid(columns: threeColGrid, spacing: 10) {
-                ForEach(howlFeed) { photo in
-                    Photo(photo: photo)
-                        .photo
-                        .image
-                        .resizable()
-                        .scaledToFill()
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                        .aspectRatio(1, contentMode: .fill)
-                        .clipped()
+                ForEach(filteredPosts) { post in
+                    AspectImage(post.image) // Using AspectImage from Prof Douglas
                 }
             }
             Spacer()
@@ -46,6 +46,6 @@ struct Profile: View {
 
 struct Profile_Previews: PreviewProvider {
     static var previews: some View {
-        Profile()
+        Profile().environmentObject(FeedViewModel())
     }
 }
