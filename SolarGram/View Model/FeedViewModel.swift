@@ -9,30 +9,38 @@ import SwiftUI
 
 class FeedViewModel: ObservableObject {
     
+    // Connect to the model
     @Published private var model: SolarGramPosts = SolarGramPosts()
 
+    // This makes it available to Views since model is private
     var feed: [PostModel] {
         model.posts
     }
     
+    func likePost(post: PostModel) {
+        model.likePost(post: post)
+    }
+    
+    // Adds posts - From Prof Douglas
     func addPostFrom(image: UIImage?) {
 
         // make sure the optional is an actual image
         guard let image else {return}
         
-        let id = 2
-        
         // you must do this on main thread for UI to update properly
         DispatchQueue.main.async {
             // create a new post object, it might look like this, but you can adapt as needed in your project.
-            let newPost = PostModel(id: id+1, user: "howl", imageName: image.description, caption: "Something New")
+            
+            // REPLACE WITH REAL IMAGE FROM PICKER
+            let newPost = PostModel(user: "howl", imageName: image.description, caption: "Something New", isLiked:  false, canBeDeleted: true)
 
             // call some function on the model to add the new post to the array of posts, you can do this how you like, but the logic should be in the model
             self.model.add(post: newPost)
-            
-            print(self.feed)
         }
- 
+    }
+    
+    func deletePost(post: PostModel) {
+        
     }
     
 }

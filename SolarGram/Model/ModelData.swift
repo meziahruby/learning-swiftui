@@ -8,7 +8,6 @@
 import Foundation
 
 var howlFeed: [PhotoModel] = load("howlPhotos.json")
-var solarGramFeed: [PostModel] = load("feedData.json")
 
 
 // Copied from previous HW tutorial

@@ -9,9 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    var viewModel: FeedViewModel
-    
-    @State var showModal = false
+    @StateObject var viewModel = FeedViewModel()
     
     var body: some View {
         /*
@@ -19,7 +17,7 @@ struct ContentView: View {
          * NavigationView is also being deprecated in favor of NavigationStack
          */
         TabView {
-            ScrollView { Feed(viewModel: FeedViewModel()) }
+            ScrollView { Feed() }
                 .tabItem {
                     Label("Feed", systemImage: "shared.with.you")
                 }
@@ -28,17 +26,12 @@ struct ContentView: View {
                 .tabItem {
                     Label("Profile", systemImage: "person.circle.fill")
                 }
-            CameraPicker(viewModel: FeedViewModel())
-                .tabItem {
-                    Label("Take Photo", systemImage: "camera")
-                }
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        
-        ContentView(viewModel: FeedViewModel())
+        ContentView()
     }
 }

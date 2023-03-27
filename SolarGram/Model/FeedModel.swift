@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 
-struct FeedModel: Identifiable, Hashable, Codable {
-    var id: Int
+struct FeedsModel: Identifiable, Hashable, Codable {
+    var id: UUID = UUID()
     
     var user: String
     var profilePic: Image { Image(user) }

@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct PhotoModel: Identifiable, Hashable, Codable {
-    var id: Int
+    var id: UUID = UUID()
     var caption: String
     
     private var imageName: String

@@ -11,7 +11,7 @@ import SwiftUI
 struct SolarGramApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView(viewModel: FeedViewModel())
+            ContentView()
         }
     }
 }

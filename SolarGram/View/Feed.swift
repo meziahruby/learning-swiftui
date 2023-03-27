@@ -11,7 +11,7 @@ struct Feed: View {
     @State private var showImagePicker = false
     @State private var showFilePicker = false
     
-    var viewModel: FeedViewModel
+    @EnvironmentObject var viewModel: FeedViewModel
     
     var body: some View {
 
@@ -53,7 +53,7 @@ struct Feed: View {
 struct Feed_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView {
-            Feed(viewModel: FeedViewModel())
+            Feed()
         }
     }
 }

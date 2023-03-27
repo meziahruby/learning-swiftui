@@ -11,6 +11,7 @@ struct Post: View {
     
     @State var isLiked = false
     
+    @EnvironmentObject var viewModel: FeedViewModel
     var post: PostModel
     
     var body: some View {
@@ -34,7 +35,7 @@ struct Post: View {
                 // This helps clip the image to squares
                 // Learned from https://stackoverflow.com/questions/58290963/clip-image-to-square-in-swiftui
                 ZStack {
-                    post.image
+                    post.imageFromName
                         .resizable()
                         .scaledToFill()
                         .frame(minWidth: 0, maxWidth: .infinity)
@@ -42,24 +43,40 @@ struct Post: View {
                 .clipped()
                 .aspectRatio(1, contentMode: .fill)
                 
-                // Caption and Like button
+                // Caption and Post Action Buttons
                 VStack(alignment: .leading, spacing: 0) {
                     Text(post.caption)
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading) // Fill up space for short captions
-                    Button(action: { isLiked.toggle()
-                    }, label: {
-                        switch isLiked {
-                        case true:
-                            Image(systemName: "heart.fill")
-                                .scaleEffect(1.5)
-                                .padding(.top, 10)
-                        default:
-                            Image(systemName: "heart")
-                                .scaleEffect(1.5)
-                                .padding(.top, 10)
-                        }
-                    })
-                    .buttonStyle(.plain)
+                    
+                    HStack {
+                        // Like button
+                        Button(action: { viewModel.likePost(post: post)},
+                            label: {
+                                switch post.isLiked {
+                                case true:
+                                    Image(systemName: "heart.fill")
+                                        .scaleEffect(1.5)
+                                        .padding(.top, 10)
+                                default:
+                                    Image(systemName: "heart")
+                                        .scaleEffect(1.5)
+                                        .padding(.top, 10)
+                                }
+                            })
+                            .buttonStyle(.plain)
+                        
+                        // Delete button - Only show up if it can be deleted
+                        Button(action: { viewModel.deletePost(post: post)},
+                            label: {
+                                Image(systemName: "trash")
+                                    .scaleEffect(1.5)
+                                    .padding(.top, 10)
+                            })
+                            .buttonStyle(.plain)
+                            // This opacity trick taken from https://stackoverflow.com/questions/57420386/how-do-you-make-a-button-conditionally-hidden-or-disabled
+                            .opacity(post.canBeDeleted ? 1 : 0)
+                            
+                    }
 
                 }
                 .padding(10)
@@ -71,6 +88,7 @@ struct Post: View {
 
 struct Post_Previews: PreviewProvider {
     static var previews: some View {
-        Post(post: solarGramFeed[0])
+        let postPreviewObject = PostModel(user: "Howl", imageName: "sophieAtMarket", caption: "Shopping with Sophie today!", isLiked: false, canBeDeleted: false)
+        Post(post: postPreviewObject)
     }
 }
